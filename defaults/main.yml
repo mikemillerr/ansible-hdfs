@@ -5,33 +5,33 @@
 hdfs_cluster_name: cluster1
 hdfs_user: hdfs
 hdfs_group: hadoop
-hdfs_user_home: "/var/lib/{{ hdfs_user }}"
+hdfs_user_home: "/home/{{ hdfs_user }}"
 hdfs_version: 2.8.2
 hdfs_upgrade: False
 hdfs_upgrade_force: False
 
-hdfs_java_home: /usr/lib/jvm/java-1.8.0-openjdk-amd64
+hdfs_java_home: /usr/lib/jvm/java-8-openjdk-amd64
 
 hdfs_extra_classpath: []
 
 # Bootstraps the cluster ( Format namenodes, zkfc, journalnodes, start all services)
 # Please read the code before you activate this option.
 # Especially if you already have a hadoop setup in place.
-hdfs_bootstrap: False
+hdfs_bootstrap: True 
 
 # Use ansible handlers?
 hdfs_ansible_handlers: True
 # Redistribute ssh keys every time?
 hdfs_redistribute_ssh_keys: False
 
-hdfs_parent_dir: /usr/local  # hadoop binaries will be copied here
-hdfs_ssh_known_hosts_file: "{{ hdfs_user_home }}/.ssh/known_hosts"
+hdfs_parent_dir: "/home/{{ hdfs_user}}"  # hadoop binaries will be copied here
+hdfs_ssh_known_hosts_file: "/home/{{ hdfs_user }}/.ssh/known_hosts"
 
 # ------------------------------------------------------------------------------
 # Hadoop installation source
 # ------------------------------------------------------------------------------
 hdfs_distribution_method: "download"   # Method to use for archive installation ("download", "local_file" or "compile")
-hdfs_download_url: "https://archive.apache.org/dist/hadoop/core/hadoop-{{ hdfs_version }}/hadoop-{{ hdfs_version }}.tar.gz"
+hdfs_download_url: "https://master.hadoop.cluster/hadoop/hadoop-{{ hdfs_version }}.tar.gz"
 hdfs_local_archive_path: "./"
 
 # ------------------------------------------------------------------------------
