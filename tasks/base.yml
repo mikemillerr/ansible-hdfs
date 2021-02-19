@@ -29,6 +29,9 @@
 
 - name: Create folder /etc/hadoop
   file: path=/etc/hadoop state=directory owner={{hdfs_user}} group={{hdfs_group}}
+  
+- name: Create folder "{{ hdfs_hadoop_home }}/etc/hadoop"
+  file: path="{{ hdfs_hadoop_home }}/etc/hadoop" state=directory owner={{hdfs_user}} group={{hdfs_group}}
 
 - name: Create hadoop link for conf to /etc/hadoop
   file: src={{hdfs_conf_dir}} dest=/etc/hadoop/conf owner={{hdfs_user}} group={{hdfs_group}} state=link

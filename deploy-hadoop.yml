@@ -1,0 +1,11 @@
+# Deploy hadoop on cluster
+---
+- hosts: all
+  remote_user: ansible
+  become_user: root
+  become: yes
+  become_method: su
+
+  roles:
+  
+  - ansible-hdfs

@@ -9,6 +9,7 @@ hdfs_user_home: "/home/{{ hdfs_user }}"
 hdfs_version: 2.8.2
 hdfs_upgrade: False
 hdfs_upgrade_force: False
+hdfs_host_domain_name: hadoop.cluster
 
 hdfs_java_home: /usr/lib/jvm/java-8-openjdk-amd64
 
@@ -31,7 +32,7 @@ hdfs_ssh_known_hosts_file: "/home/{{ hdfs_user }}/.ssh/known_hosts"
 # Hadoop installation source
 # ------------------------------------------------------------------------------
 hdfs_distribution_method: "download"   # Method to use for archive installation ("download", "local_file" or "compile")
-hdfs_download_url: "https://master.hadoop.cluster/hadoop/hadoop-{{ hdfs_version }}.tar.gz"
+hdfs_download_url: "http://master.hadoop.cluster/hadoop/hadoop-{{ hdfs_version }}.tar.gz"
 hdfs_local_archive_path: "./"
 
 # ------------------------------------------------------------------------------
@@ -76,24 +77,24 @@ hdfs_secondary_namenode_http_address: "0.0.0.0:50090"
 # ------------------------------------------------------------------------------
 
 # Symlink for hadoop to the version you are installing
-hdfs_hadoop_home: "{{hdfs_parent_dir}}/hadoop"
-hdfs_conf_dir: "{{hdfs_hadoop_home}}/etc/hadoop"
-hdfs_bin_dir: "{{hdfs_hadoop_home}}/bin"
-hdfs_log_dir: /var/log/hadoop
-hdfs_tmpdir: "/tmp"
+hdfs_hadoop_home: "{{ hdfs_parent_dir }}/hadoop"
+hdfs_conf_dir: "{{ hdfs_hadoop_home }}/etc/hadoop"
+hdfs_bin_dir: "{{ hdfs_hadoop_home }}/bin"
+hdfs_log_dir: "{{ hdfs_hadoop_home }}/var/log/hadoop"
+hdfs_tmpdir: "{{ hdfs_hadoop_home }}/tmp"
 
 # Directories where namenode should store metadata
 hdfs_namenode_dir_list:
- - "/tmp/dfs/name"
+ - "{{ hdfs_hadoop_home }}/tmp/dfs/name"
 # Directories where secondary namenode should store temporary images to merge
 hdfs_namenode_checkpoint_dir_list:
- - "/tmp/dfs/secondaryname"
+ - "{{ hdfs_hadoop_home }}/tmp/dfs/secondaryname"
 # Directories where datanodes should store data
 hdfs_datanode_dir_list:
- - "/tmp/dfs/data"
+ - "{{ hdfs_hadoop_home }}/tmp/dfs/data"
 
 # Directories where journal nodes should store edits
-hdfs_dfs_journalnode_edits_dir: "/tmp/dfs/journaldir"
+hdfs_dfs_journalnode_edits_dir: "{{ hdfs_hadoop_home }}/tmp/dfs/journaldir"
 hdfs_dfs_journalnode_edits_dir_perm: "700"
 
 hdfs_enable_short_circuit_reads: true  # IMPORTANT: this property should be 'true' or 'false'
@@ -131,7 +132,7 @@ hdfs_dfs_namenode_avoid_write_stale_datanode: true
 hdfs_dfs_namenode_audit_log_async: false
 hdfs_dfs_client_file_block_storage_locations_num_threads: 10
 hdfs_dfs_client_file_block_storage_locations_timeout_millis: 1000
-hdfs_dfs_domain_socket_path_folder: /var/lib/hadoop-hdfs
+hdfs_dfs_domain_socket_path_folder: "/var/lib/hadoop-hdfs"
 
 # ------------------------------------------------------------------------------
 # log4j.properties vars

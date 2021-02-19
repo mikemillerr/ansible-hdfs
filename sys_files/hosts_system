@@ -1,0 +1,14 @@
+127.0.0.1	master.hadoop.cluster master	
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+192.168.51.3 master.hadoop.cluster master
+192.168.51.4 nnode1.hadoop.cluster nnode1
+192.168.51.5 nnode2.hadoop.cluster nnode2
+192.168.51.6 zookeeper.hadoop.cluster zookeeper
+192.168.51.7 data1.hadoop.cluster data1
+192.168.51.8 data2.hadoop.cluster data2
+192.168.51.9 data3.hadoop.cluster data3
